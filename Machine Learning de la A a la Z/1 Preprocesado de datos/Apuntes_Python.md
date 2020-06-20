@@ -44,7 +44,8 @@ class sklearn.impute.SimpleImputer(missing_values=nan, strategy='mean', fill_val
 - strategystring : La estrategia que se reemplazara 'mean' (predeterminada)
 """
 
-imputer = SimpleImputer(strategy="mean")  # Los valores 'NaN' seran reemplazado por ('la media') Toma como conjunto de valores todos los de la columna
+# Los valores 'NaN' seran reemplazado por ('la media') Toma como conjunto de valores todos los de la columna
+imputer = SimpleImputer(strategy="mean")  
 
 # medias en columnas 1,2 / el ultimo valor no esta considerado por eso se pone hasta el 3 
 imputer = imputer.fit(X[:, 1:3])  # fit('Que datos le aplicare el imputer')

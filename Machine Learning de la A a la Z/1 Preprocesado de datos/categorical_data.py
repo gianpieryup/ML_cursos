@@ -1,45 +1,14 @@
-# Apuntes de Gianpier
-# Un conjunto de datos (conocido también por el anglicismo `dataset`, comúnmente utilizado en algunos países hispanohablantes) es una colección de datos habitualmente tabulada.
-
-# Plantilla de Pre Procesado - Datos Categóricos
-
-# Hay un archio excel con los datos a usar.[Como una tabla en SQL] Este archivo tiene como separador de campos la coma (,)
-
-# Cómo importar las librerías
-# numpy : libreria con herramientas matematicas
 import numpy as np
-
-# pyplot : Sublibreias para hacer dibujos
 import matplotlib.pyplot as plt
-
-# pandas :Carga, Manipulacion de datos(para leer el .csv,...)
 import pandas as pd
 
 # Importar el data set
 dataset = pd.read_csv('Data.csv')
-# Recordar que Los indices de Python empiezan con 0
 
-# Lo que quiero hacer es y = f(X) donde 'y' sera la variable a predecir y 'X' las variables independientes
-
-# iloc["filas","columnas"]
-# iloc : Index Local section un metodo para hallar el valor de una posicion dada.
-
-# .iloc [: (Significa todas las FILAS), :-1 (Significa todas las columnas menos la ultima) ]
-X = dataset.iloc[:, :-1].values     # .values (El valor de las posiciones)
-# X seria un array de objectos
-
-# todas las filas / pero solo la columna 3
-y = dataset.iloc[:, 3].values
-
-
-
-
+X = dataset.iloc[:, :-1].values # dataset[['Country','Age','Salary']].values
+y = dataset.iloc[:, 3].values # dataset['Purchased'].values
 
 # TRATAMIENTO DE LOS NaN
-# IMPORTANTE: Cambios en Python 3.7
-# Tratamiento de los Nan (Reemplazar los datos faltantes por la media de los datos)
-
-# (import Imputer : esta clase fue descontinuada) 
 from sklearn.impute import SimpleImputer
 # Transformador de imputación para completar valores perdidos.  
 """
