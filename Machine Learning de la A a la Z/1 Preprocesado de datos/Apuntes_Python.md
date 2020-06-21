@@ -39,12 +39,13 @@ y = dataset.iloc[:, 3].values
 from sklearn.impute import SimpleImputer
 
 """
-class sklearn.impute.SimpleImputer(missing_values=nan, strategy='mean', fill_value=None, verbose=0, copy=True, add_indicator=False)
-- missing_values : Definicion de valores faltantes (number, string, np.nan (predeterminado) o None).Los que coinciden con missing_values serán transformados.
-- strategystring : La estrategia que se reemplazara 'mean' (predeterminada)
+class sklearn.impute.SimpleImputer(
+missing_values=nan, 
+strategy='mean', 
+fill_value=None, ...)
 """
 
-# Los valores 'NaN' seran reemplazado por ('la media') Toma como conjunto de valores todos los de la columna
+# Los valores 'NaN' seran reemplazado por ('la media') Toma como conjunto de valores todos los de la columna (axis = 0)// por fila (axis = 1)
 imputer = SimpleImputer(strategy="mean")  
 
 # medias en columnas 1,2 / el ultimo valor no esta considerado por eso se pone hasta el 3 
@@ -67,16 +68,14 @@ from sklearn.compose import ColumnTransformer
 # LabelEncoder le da igual que tipo de dato lo trasnforma a numero
 # ["Pedro","Juan","Roberto","Juan"] = > [2,1,0,1]
 labelencoder_X = LabelEncoder()
-#  fit_transform('Las columnas categoricas que quiera modificar')                 
+#  fit_transform('Las columnas categoricas que quiera modificar')               
 X[:, 0] = labelencoder_X.fit_transform(X[:, 0])
 
-
-# Para crear las variables dummys(codificacion de un solo 1 por linea)
 """
 Variables dummys o onehotencoder
-0 => (1,0,0)
-2 => (0,0,1)
-1 => (0,1,0)
+"francia" => (1,0,0)
+"españa" => (0,0,1)
+"germania" => (0,1,0)
 """
 ct = ColumnTransformer(
     [('one_hot_encoder', OneHotEncoder(categories='auto'), [0])],    # The column numbers to be transformed (here is [0] but can be [0, 1, 3])
