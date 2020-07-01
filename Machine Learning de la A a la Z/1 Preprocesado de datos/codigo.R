@@ -12,14 +12,32 @@ dataset$Salary = ifelse(is.na(dataset$Salary),
                         dataset$Salary)
 
 
-#str(dataset)
 # Codificar las variables categóricas
-#dataset$Country = factor(dataset$Country,
- #                        levels = c("France", "Spain", "Germany"),
-  #                       labels = c(1, 2, 3))
+# "levels" => sera marcado como "labels"
+dataset$Country = factor(dataset$Country,
+                         levels = c("France", "Spain", "Germany"),
+                         labels = c(1, 2, 3))
 
-# Le asigna a cada varibale string 'categorico' por un numero 
-#dataset$Purchased = factor(dataset$Purchased,
- #                          levels = c("No", "Yes"),
-  #                         labels = c(0,1))
-#str(dataset)
+ 
+dataset$Purchased = factor(dataset$Purchased,
+                           levels = c("No", "Yes"),
+                           labels = c(0,1))
+
+
+# Recordar que Los indices de R empiezan con 1
+# dataset = dataset[, 2:3]
+
+
+# Dividir los datos en conjunto de entrenamiento y conjunto de test
+# install.packages("caTools") # Solo una ves
+library(caTools) # Correr esta linea o marcar el check
+
+set.seed(123) # Configurar semilla
+split = sample.split(dataset$Purchased, SplitRatio = 0.8)
+# SplitRatio : %de entrenamiento
+
+# > split
+# [1]  TRUE  TRUE  TRUE  TRUE  TRUE FALSE  TRUE  TRUE FALSE  TRUE
+
+training_set = subset(dataset, split == TRUE)
+testing_set = subset(dataset, split == FALSE)

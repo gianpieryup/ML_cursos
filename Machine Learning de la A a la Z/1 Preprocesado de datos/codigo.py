@@ -43,3 +43,14 @@ X = np.array(ct.fit_transform(X), dtype=np.float)
 
 labelencoder_y = LabelEncoder()
 y = labelencoder_y.fit_transform(y)
+
+
+# Dividir el data set en conjunto de entrenamiento y conjunto de testing
+from sklearn.model_selection import train_test_split
+# X_train : X de entrenamiento | X_test : x de test
+# y_train : y de entrenamiento | y_test : y de test
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.2, random_state = 0)
+
+# X : independientes ||  y :dependientes(a predecir)
+# test_size : %tamaño del test
+# random_state: semilla

@@ -2,9 +2,23 @@
 
 Si no sabe armar un vector o no tiene ni puta idea, haga un curso de R, o mire el apunte Rstudio
 
+**Antes de todo** : Fija que estés parado en el directorio de trabajo
+
+Dale a `Files` luego <kbd>...</kbd> selecciona <span style="background:yellow;">El directorio de trabajo</span> y ahora que estas parado. Dile a **R** que este es mi **directorio de trabajo** con <kbd>:arrow_down_small: More</kbd>  luego <kbd>Set As Working Directory</kbd> . Y ya :slightly_smiling_face:
+
+### Versiones en R
+
+En la terminal de **R**
+
+> \> version
+>
+> version.string R version 3.6.2 (2019-12-12)
+
+
+
 ## Pre-procesado en R
 
-**Antes de todo** : Fija que estés parado en el directorio de trabajo
+#### Cargar Librerías
 
 Para cargar la librería (`package`) en R, existen dos formas: La primera es en lineá de comandos
 
