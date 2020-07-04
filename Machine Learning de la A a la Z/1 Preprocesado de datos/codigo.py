@@ -54,3 +54,12 @@ X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.2, rando
 # X : independientes ||  y :dependientes(a predecir)
 # test_size : %tamaño del test
 # random_state: semilla
+
+
+# Escalado de variables
+from sklearn.preprocessing import StandardScaler
+sc_X = StandardScaler()
+# Usamos el mismo tipo de escalado "sc_X" en ambos "X_train" y "X_test"
+X_train = sc_X.fit_transform(X_train)
+X_test = sc_X.transform(X_test)
+

@@ -22,10 +22,10 @@ dataset$Country = factor(dataset$Country,
 dataset$Purchased = factor(dataset$Purchased,
                            levels = c("No", "Yes"),
                            labels = c(0,1))
-
-
 # Recordar que Los indices de R empiezan con 1
-# dataset = dataset[, 2:3]
+
+
+
 
 
 # Dividir los datos en conjunto de entrenamiento y conjunto de test
@@ -41,3 +41,12 @@ split = sample.split(dataset$Purchased, SplitRatio = 0.8)
 
 training_set = subset(dataset, split == TRUE)
 testing_set = subset(dataset, split == FALSE)
+
+
+
+
+# Escalado de valores
+training_set[,2:3] = scale(training_set[,2:3])
+testing_set[,2:3] = scale(testing_set[,2:3])
+
+# No escalo el "Pais" y "Puncharse" por que no son numeros(es otro tipo de dato,labels) y R no puede compararlos con numeros
