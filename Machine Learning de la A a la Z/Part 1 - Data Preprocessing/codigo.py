@@ -26,20 +26,26 @@ X[:, 1:3] = imputer.transform(X[:, 1:3]) # transform() : devuelve y asigna los v
 from sklearn.preprocessing import LabelEncoder, OneHotEncoder
 from sklearn.compose import ColumnTransformer
 
+#  fit_transform('Las columnas categoricas que quiera modificar') lo transforma a numeros ------------
 labelencoder_X = LabelEncoder()
-#  fit_transform('Las columnas categoricas que quiera modificar') lo transforma a numeros                    
 X[:, 0] = labelencoder_X.fit_transform(X[:, 0])
+# --------------  Pero esto no me servira, si fueran solo 2 puede que si pero son mas , por tanto nesecito transformar a variables DUMMYS
 
-# Trasforma a DUMMYS
+
+
+# Trasforma a DUMMYS  -------(La columna debe ser numerica)
 onehotencoder = OneHotEncoder(categorical_features = [0])
 X = onehotencoder.fit_transform(X).toarray()
+# ---------------------------
 
 
-ct = ColumnTransformer(
+# Nueva VERSION --------------------
+ct = ColumnTransformer(# Elegir la columna a transformar a DUMMY
     [('one_hot_encoder', OneHotEncoder(categories='auto'), [0])],    
     remainder='passthrough')
 
 X = np.array(ct.fit_transform(X), dtype=np.float)
+# ----------------------------------
 
 labelencoder_y = LabelEncoder()
 y = labelencoder_y.fit_transform(y)
