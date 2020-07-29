@@ -54,3 +54,31 @@ X_Modeled = backwardElimination(X_opt, SL)
 Espero que lo disfrutes,
 
 Juan Gabriel Gomila
+
+
+
+
+
+### Regresión Lineal Múltiple en R - Eliminación hacia atrás automática
+
+Si quieres tener una implementación automática de la eliminación hacia atrás en R, aquí te la dejo:
+
+```R
+backwardElimination <- function(x, sl) {  
+    numVars = length(x)  
+    for (i in c(1:numVars)){    
+        regressor = lm(formula = Profit ~ ., data = x)    
+        maxVar = max(coef(summary(regressor))[c(2:numVars), "Pr(>|t|)"])    
+        if (maxVar > sl){      
+            j = which(coef(summary(regressor))[c(2:numVars), "Pr(>|t|)"] == maxVar)     
+            x = x[, -j]    
+        }    
+        numVars = numVars - 1  
+    }  
+    return(summary(regressor))
+} 
+
+SL = 0.05
+dataset = dataset[, c(1,2,3,4,5)]
+backwardElimination(training_set, SL)
+```

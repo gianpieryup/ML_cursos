@@ -1,0 +1,3 @@
+Los que tengáis problemas al instalar ElemStatLearn desde R probad con esta línea de código
+
+install.packages("https://cran.r-project.org/src/contrib/Archive/ElemStatLearn/ElemStatLearn_2015.6.26.2.tar.gz",repos=NULL, type="source")
