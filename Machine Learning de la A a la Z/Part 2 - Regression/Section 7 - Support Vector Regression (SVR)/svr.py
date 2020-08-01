@@ -1,11 +1,3 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-"""
-Created on Mon Mar 11 18:38:15 2019
-
-@author: juangabriel
-"""
-
 # SVR
 
 # Cómo importar las librerías
@@ -25,19 +17,23 @@ from sklearn.model_selection import train_test_split
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.2, random_state = 0)
 """
 
-# Escalado de variables
+# Escalado de variables// Sino me sale una recta
 from sklearn.preprocessing import StandardScaler
 sc_X = StandardScaler()
 sc_y = StandardScaler()
 X = sc_X.fit_transform(X)
-y = sc_y.fit_transform(y.reshape(-1,1))
+y = sc_y.fit_transform(y.reshape(-1,1))# a vector columna
+
 
 # Ajustar la regresión con el dataset
 from sklearn.svm import SVR
-regression = SVR(kernel = "rbf")
+regression = SVR(kernel = "rbf") #Lineal, Polinomial, revisar doc
 regression.fit(X, y)
+# ---------------------------------------
 
-# Predicción de nuestros modelos con SVR
+
+# Predicción de nuestros modelos con SVR// Es para 6.5 escalado OJO
+# pero tengo el resultado escalado -> Para revertirlo "inverse_transform"
 y_pred = sc_y.inverse_transform(regression.predict(sc_X.transform(np.array([[6.5]]))))
 
 # Visualización de los resultados del SVR
@@ -50,3 +46,4 @@ plt.xlabel("Posición del empleado")
 plt.ylabel("Sueldo (en $)")
 plt.show()
 
+#Podemos arreglar la grafica "invetentinedo lo escalado"
