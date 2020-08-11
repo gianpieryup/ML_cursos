@@ -1,12 +1,13 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Created on Tue Mar 12 13:50:03 2019
+Created on Thu Mar 14 18:20:58 2019
 
 @author: juangabriel
 """
 
-# Regresión Logística
+# K - Nearest Neighbors (K-NN)
+
 
 # Cómo importar las librerías
 import numpy as np
@@ -32,9 +33,12 @@ X_train = sc_X.fit_transform(X_train)
 X_test = sc_X.transform(X_test)
 
 
-# Ajustar el modelo de Regresión Logística en el Conjunto de Entrenamiento
-from sklearn.linear_model import LogisticRegression
-classifier = LogisticRegression(random_state = 0) # solver='lbfgs',
+# Ajustar el clasificador en el Conjunto de Entrenamiento
+from sklearn.neighbors import KNeighborsClassifier
+# n_neighbors : "cant de vecinos"(impar/para que no haya empates)
+# p = 2 : "distancia euclidea"
+# minkowski : "por defecto"
+classifier = KNeighborsClassifier(n_neighbors = 5, metric = "minkowski", p = 2)
 classifier.fit(X_train, y_train)
 
 # Predicción de los resultados con el Conjunto de Testing
@@ -56,12 +60,12 @@ plt.ylim(X2.min(), X2.max())
 for i, j in enumerate(np.unique(y_set)):
     plt.scatter(X_set[y_set == j, 0], X_set[y_set == j, 1],
                 c = ListedColormap(('red', 'green'))(i), label = j)
-plt.title('Clasificador (Conjunto de Entrenamiento)')
+plt.title('K-NN (Conjunto de Entrenamiento)')
 plt.xlabel('Edad')
 plt.ylabel('Sueldo Estimado')
 plt.legend()
-#plt.show()
-plt.savefig('ok.jpg')
+plt.show()
+
 
 # Representación gráfica de los resultados del algoritmo en el Conjunto de Testing
 X_set, y_set = X_test, y_test
@@ -74,13 +78,8 @@ plt.ylim(X2.min(), X2.max())
 for i, j in enumerate(np.unique(y_set)):
     plt.scatter(X_set[y_set == j, 0], X_set[y_set == j, 1],
                 c = ListedColormap(('red', 'green'))(i), label = j)
-plt.title('Clasificador (Conjunto de Test)')
+plt.title('K-NN (Conjunto de Test)')
 plt.xlabel('Edad')
 plt.ylabel('Sueldo Estimado')
 plt.legend()
 plt.show()
-
-
-
-
-

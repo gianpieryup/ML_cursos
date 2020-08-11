@@ -1,12 +1,13 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Created on Tue Mar 12 13:50:03 2019
+Created on Thu Mar 14 19:32:40 2019
 
 @author: juangabriel
 """
 
-# Regresión Logística
+# SVM
+
 
 # Cómo importar las librerías
 import numpy as np
@@ -32,10 +33,11 @@ X_train = sc_X.fit_transform(X_train)
 X_test = sc_X.transform(X_test)
 
 
-# Ajustar el modelo de Regresión Logística en el Conjunto de Entrenamiento
-from sklearn.linear_model import LogisticRegression
-classifier = LogisticRegression(random_state = 0) # solver='lbfgs',
+# Ajustar el SVM en el Conjunto de Entrenamiento
+from sklearn.svm import SVC
+classifier = SVC(kernel = "linear", random_state = 0)
 classifier.fit(X_train, y_train)
+
 
 # Predicción de los resultados con el Conjunto de Testing
 y_pred  = classifier.predict(X_test)
@@ -56,12 +58,12 @@ plt.ylim(X2.min(), X2.max())
 for i, j in enumerate(np.unique(y_set)):
     plt.scatter(X_set[y_set == j, 0], X_set[y_set == j, 1],
                 c = ListedColormap(('red', 'green'))(i), label = j)
-plt.title('Clasificador (Conjunto de Entrenamiento)')
+plt.title('SVM (Conjunto de Entrenamiento)')
 plt.xlabel('Edad')
 plt.ylabel('Sueldo Estimado')
 plt.legend()
-#plt.show()
-plt.savefig('ok.jpg')
+plt.show()
+
 
 # Representación gráfica de los resultados del algoritmo en el Conjunto de Testing
 X_set, y_set = X_test, y_test
@@ -74,13 +76,9 @@ plt.ylim(X2.min(), X2.max())
 for i, j in enumerate(np.unique(y_set)):
     plt.scatter(X_set[y_set == j, 0], X_set[y_set == j, 1],
                 c = ListedColormap(('red', 'green'))(i), label = j)
-plt.title('Clasificador (Conjunto de Test)')
+plt.title('SVM (Conjunto de Test)')
 plt.xlabel('Edad')
 plt.ylabel('Sueldo Estimado')
 plt.legend()
 plt.show()
-
-
-
-
 
