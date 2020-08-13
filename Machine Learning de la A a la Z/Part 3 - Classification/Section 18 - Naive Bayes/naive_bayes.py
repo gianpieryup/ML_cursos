@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Created on Thu Mar 14 19:32:40 2019
+Created on Tue Mar 19 18:53:21 2019
 
 @author: juangabriel
 """
 
-# SVM
+# Naïve Bayes
 
 
 # Cómo importar las librerías
@@ -32,13 +32,10 @@ sc_X = StandardScaler()
 X_train = sc_X.fit_transform(X_train)
 X_test = sc_X.transform(X_test)
 
-
-# Ajustar el SVM en el Conjunto de Entrenamiento
-from sklearn.svm import SVC
-# kernel : define la forma de la separacion(una linea recta)
-classifier = SVC(kernel = "linear", random_state = 0)
+# Ajustar el clasificador en el Conjunto de Entrenamiento
+from sklearn.naive_bayes import GaussianNB
+classifier = GaussianNB()
 classifier.fit(X_train, y_train)
-
 
 # Predicción de los resultados con el Conjunto de Testing
 y_pred  = classifier.predict(X_test)
@@ -59,7 +56,7 @@ plt.ylim(X2.min(), X2.max())
 for i, j in enumerate(np.unique(y_set)):
     plt.scatter(X_set[y_set == j, 0], X_set[y_set == j, 1],
                 c = ListedColormap(('red', 'green'))(i), label = j)
-plt.title('SVM (Conjunto de Entrenamiento)')
+plt.title('Naïve Bayes (Conjunto de Entrenamiento)')
 plt.xlabel('Edad')
 plt.ylabel('Sueldo Estimado')
 plt.legend()
@@ -77,9 +74,8 @@ plt.ylim(X2.min(), X2.max())
 for i, j in enumerate(np.unique(y_set)):
     plt.scatter(X_set[y_set == j, 0], X_set[y_set == j, 1],
                 c = ListedColormap(('red', 'green'))(i), label = j)
-plt.title('SVM (Conjunto de Test)')
+plt.title('Naïve Bayes (Conjunto de Test)')
 plt.xlabel('Edad')
 plt.ylabel('Sueldo Estimado')
 plt.legend()
 plt.show()
-
