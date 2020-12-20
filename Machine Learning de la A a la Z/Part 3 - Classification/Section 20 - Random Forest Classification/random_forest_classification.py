@@ -34,6 +34,7 @@ X_test = sc_X.transform(X_test)
 
 # Ajustar el clasificador  Random Forest en el Conjunto de Entrenamiento
 from sklearn.ensemble import RandomForestClassifier
+# 10 arboles(cuidado con el Overfiting)
 classifier = RandomForestClassifier(n_estimators = 10, criterion = "entropy", random_state = 0)
 classifier.fit(X_train, y_train)
 
