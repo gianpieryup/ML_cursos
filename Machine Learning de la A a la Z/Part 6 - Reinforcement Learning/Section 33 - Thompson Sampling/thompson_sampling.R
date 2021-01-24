@@ -14,7 +14,7 @@ for(n in 1:N){
   max_random = 0
   ad = 0
   for(i in 1:d){
-    random_beta = rbeta(n = 1,
+    random_beta = rbeta(n = 1, # Solo quiereo un numero como resultado
                         shape1 = number_of_rewards_1[i]+1,
                         shape2 = number_of_rewards_0[i]+1)
     if(random_beta > max_random){
